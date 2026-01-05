@@ -152,7 +152,25 @@ int main()
                 break;
 
             case 3:
+                {
+                    ofstream f("sv.txt", ios::app);
+            	if (!f.is_open()){
+            		cout<< "Khong the mo file!\n";
+            		break;
+            	}
+            	
+            	f << svVEC.size() << "\n";
+            	
+            	for (size_t i = 0; i < svVEC.size() ; ++i){
+            		f << svVEC[i].getMssv() << "\n";
+                    f << svVEC[i].getName() << "\n";   
+                    f << svVEC[i].getCourse() << "\n";
+                    f << svVEC[i].getMark() << "\n";
+				}
+				f.close();
+				cout << "Da luu " << svVEC.size() << "Data written to sv.txt\n";
                 break;
+                }
 
             case 4: 
                 cout << "1. Tim kiem theo MSSV" << endl;
