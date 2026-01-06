@@ -108,8 +108,7 @@ int main() {
 
     svVEC.push_back(SinhVien(m, n, c, ma));
   }
-
-  // cout << "Size: " << svVEC.size() << endl;
+  int size_ban_dau = svVEC.size();
 
   //   for (int i = 0; i < svVEC.size(); ++i) {
   //     svVEC[i].printSV();
@@ -147,15 +146,20 @@ int main() {
         cout << "Khong the mo file!\n";
         break;
       }
+      // f << svVEC.size() << "\n";
 
-      f << svVEC.size() << "\n";
-
-      for (int i = 0; i < svVEC.size(); ++i) {
+      for (int i = svVEC.size(); i > size_ban_dau; --i) {
         f << svVEC[i].getMssv() << "\n";
         f << svVEC[i].getName() << "\n";
         f << svVEC[i].getCourse() << "\n";
         f << svVEC[i].getMark() << "\n";
       }
+      // for (int i = 0; i < svVEC.size(); ++i) {
+      //     f << svVEC[i].getMssv() << "\n";
+      //     f << svVEC[i].getName() << "\n";
+      //     f << svVEC[i].getCourse() << "\n";
+      //     f << svVEC[i].getMark() << "\n";
+      //   }
       f.close();
       cout << "Da luu " << svVEC.size() << "Data written to sv.txt\n";
       break;
