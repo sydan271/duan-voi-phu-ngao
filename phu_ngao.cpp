@@ -109,6 +109,7 @@ int main() {
     svVEC.push_back(SinhVien(m, n, c, ma));
   }
   int size_ban_dau = svVEC.size();
+  
 
   //   for (int i = 0; i < svVEC.size(); ++i) {
   //     svVEC[i].printSV();
@@ -148,18 +149,18 @@ int main() {
       }
       // f << svVEC.size() << "\n";
 
-      for (int i = svVEC.size(); i > size_ban_dau; --i) {
-        f << svVEC[i].getMssv() << "\n";
-        f << svVEC[i].getName() << "\n";
-        f << svVEC[i].getCourse() << "\n";
-        f << svVEC[i].getMark() << "\n";
-      }
-      // for (int i = 0; i < svVEC.size(); ++i) {
-      //     f << svVEC[i].getMssv() << "\n";
-      //     f << svVEC[i].getName() << "\n";
-      //     f << svVEC[i].getCourse() << "\n";
-      //     f << svVEC[i].getMark() << "\n";
-      //   }
+    //   for (int i = svVEC.size(); i > size_ban_dau; --i) {
+    //     f << svVEC[i].getMssv() << "\n";
+    //     f << svVEC[i].getName() << "\n";
+    //     f << svVEC[i].getCourse() << "\n";
+    //     f << svVEC[i].getMark() << "\n";
+    //   }
+      for (int i = 0; i < svVEC.size(); ++i) {
+          f << svVEC[i].getMssv() << "\n";
+          f << svVEC[i].getName() << "\n";
+          f << svVEC[i].getCourse() << "\n";
+          f << svVEC[i].getMark() << "\n";
+        }
       f.close();
       cout << "Da luu " << svVEC.size() << "Data written to sv.txt\n";
       break;
@@ -311,7 +312,7 @@ void searchByMSSV(vector<SinhVien> &list) {
   cout << "Nhap MSSV: ";
   long long m;
   cin >> m;
-  bool found = false;
+  bool found = true;
 
   for (int i = 0; i < list.size(); ++i) {
     if (list[i].getMssv() == m) {
@@ -329,7 +330,7 @@ void searchByName(vector<SinhVien> &list) {
   string n;
   cin >> n;
 
-  bool found = false;
+  bool found = true;
 
   for (int i = 0; i < list.size(); ++i) {
     if (list[i].getName() == n) {
