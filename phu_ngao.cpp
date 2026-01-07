@@ -155,14 +155,16 @@ int main() {
     //     f << svVEC[i].getCourse() << "\n";
     //     f << svVEC[i].getMark() << "\n";
     //   }
-      for (int i = 0; i < svVEC.size(); ++i) {
+      for (int i = size_ban_dau; i < svVEC.size(); ++i) {        
           f << svVEC[i].getMssv() << "\n";
           f << svVEC[i].getName() << "\n";
           f << svVEC[i].getCourse() << "\n";
           f << svVEC[i].getMark() << "\n";
         }
+      
+      size_ban_dau = svVEC.size();
       f.close();
-      cout << "Da luu " << svVEC.size() << "Data written to sv.txt\n";
+      cout << "Da luu vao file\n";
       break;
     }
 
@@ -259,23 +261,15 @@ void SinhVien::setMark(double ma) { mark = ma; }
 double SinhVien::getMark() { return mark; }
 
 void SinhVien::printSV() {
-  // cout << left << setw(20) << mssv
-  //      << left << setw(20) << name
-  //      << setw(20) << course
-  //      << setw(20) << fixed << setprecision(2) << mark << endl;
-  cout << mssv << "\t" << name << "\t" << course << "\t" << fixed
-       << setprecision(2) << mark << endl;
+  cout << left << setw(30) << mssv
+       << left << setw(30) << name
+       << setw(30) << course
+       << setw(30) << fixed << setprecision(2) << mark << endl;
+  // cout << mssv << "\t" << name << "\t" << course << "\t" << fixed
+  //      << setprecision(2) << mark << endl;
 }
 
-// void topRow()
-// {
-//     cout <<
-//     "============================================================================"
-//     << endl; cout << "MSSV                      Name                 Course
-//     Mark" << endl; cout <<
-//     "============================================================================"
-//     << endl;
-// }
+
 
 void addSV(vector<SinhVien> &list) {
   long long m;
@@ -342,6 +336,9 @@ void searchByName(vector<SinhVien> &list) {
     cout << "Unavailable" << endl;
   }
 }
+
+
+
 
 void sortByMark(vector<SinhVien> &list) {
   // luu y day la sort tang dan
