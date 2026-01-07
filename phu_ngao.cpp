@@ -237,7 +237,7 @@ int main() {
       }
       break;
     case 7: {
-      cout << "Nhap maso: ";
+      cout << "Nhap MSSV: ";
       long long maso;
       cin >> maso;
       xetHocBong(svVEC, maso);
@@ -433,17 +433,13 @@ void averageMark(vector<SinhVien> &list) {
 }
 
 void xetHocBong(vector<SinhVien> &list, long long m) {
-  for (int i = 0; i < list.size(); ++i) {
-    if (list[i].getMssv() == m) {
-      double avg = averageMarkBySV(list, m);
-      if (avg >= 3.5) {
-        cout << "Hoc bong: 500000" << endl;
-      } else if (avg >= 3) {
-        cout << "Hoc bong: 200000" << endl;
-      } else {
-        cout << "Khong du dieu kien" << endl;
-      }
-    }
+  double avg = averageMarkBySV(list, m);
+  if (avg >= 3.5) {
+    cout << "Hoc bong: 500000" << endl;
+  } else if (avg >= 3) {
+    cout << "Hoc bong: 200000" << endl;
+  } else {
+    cout << "Khong du dieu kien" << endl;
   }
 }
 
