@@ -344,18 +344,20 @@ void sortByMark(vector<SinhVien> &list, string mon) {
   // bubble sort
   for (int i = 0; i < list.size(); ++i) {
     for (int j = i + 1; j < list.size(); ++j) {
-      if (list[i].getCourse() == mon && list[j].getCourse() == mon) {
-        if (list[i].getMark() > list[j].getMark()) {
-          temp = list[i];
-          list[i] = list[j];
-          list[j] = temp;
-        }
+      if (list[i].getMark() > list[j].getMark()) {
+        temp = list[i];
+        list[i] = list[j];
+        list[j] = temp;
       }
     }
   }
 
   // print sorted
-  displaySV(list);
+  for (int i = 0; i < list.size(); ++i) {
+    if (list[i].getCourse() == mon) {
+      list[i].printSV();
+    }
+  }
 }
 
 void sortByName(vector<SinhVien> &list) {
