@@ -50,7 +50,7 @@ public:
 
   // access functions
   void setMssv(long long);
-  int getMssv();
+  long long getMssv();
 
   void setName(string);
   string getName();
@@ -80,6 +80,10 @@ void sortByMark(vector<SinhVien> &, string);
 void sortByName(vector<SinhVien> &);
 
 void averageMark(vector<SinhVien> &);
+
+double averageMarkBySV(vector<SinhVien> &, long long);
+
+void xetHocBong(vector<SinhVien> &, long long);
 
 int main() {
   // open file by using inFile
@@ -216,11 +220,29 @@ int main() {
       break;
 
     case 6:
-      averageMark(svVEC);
+      cout << "1. Thong ke chung" << endl;
+      cout << "2. Tinh diem trung binh cua mot sinh vien" << endl;
+      int subCh;
+      cout << "Lua chon: ";
+      cin >> subCh;
+      if (subCh == 1) {
+        averageMark(svVEC);
+      } else if (subCh == 2) {
+        cout << "Nhap MSSV: ";
+        long long maso;
+        cin >> maso;
+        double trungBinh = averageMarkBySV(svVEC, maso);
+        cout << "Diem trung binh cua sinh vien " << maso << " la: " << fixed
+             << setprecision(2) << trungBinh << endl;
+      }
       break;
-    case 7:
-
+    case 7: {
+      cout << "Nhap maso: ";
+      long long maso;
+      cin >> maso;
+      xetHocBong(svVEC, maso);
       break;
+    }
 
     case 99:
       cout << "Cam on vi da dung!";
@@ -250,7 +272,7 @@ SinhVien::SinhVien(long long m, string n, string c, double ma) {
 
 void SinhVien::setMssv(long long m) { mssv = m; }
 
-int SinhVien::getMssv() { return mssv; }
+long long SinhVien::getMssv() { return mssv; }
 
 void SinhVien::setName(string n) { name = n; }
 
@@ -273,20 +295,14 @@ void SinhVien::printSV() {
 
 void addSV(vector<SinhVien> &list) {
   long long m;
-  bool trung = false;
-  while (!trung) {
-    cout << "Nhap MSSV: ";
-    cin >> m;
-    for (int i = 0; i < list.size(); ++i) {
-      if (list[i].getMssv() == m) {
-        trung = true;
-        cout << "MSSV da ton tai!\n";
-      }
-    }
-    if (!trung) {
-      break;
-    }
-  }
+  cout << "Nhap MSSV: ";
+  cin >> m;
+  //   for (int i = 0; i < list.size(); ++i) {
+  //     if (list[i].getMssv() == m) {
+  //       cout << "MSSV da ton tai!\n";
+  //       return;
+  //     }
+  //   }
 
   string na;
   cout << "Nhap ten SV: ";
@@ -414,4 +430,33 @@ void averageMark(vector<SinhVien> &list) {
   cout << "Diem trung binh: " << avgMark << endl;
   cout << "Diem cao nhat: " << highestMark << endl;
   cout << "Diem thap nhat: " << lowestMark << endl;
+}
+
+void xetHocBong(vector<SinhVien> &list, long long m) {
+  for (int i = 0; i < list.size(); ++i) {
+    if (list[i].getMssv() == m) {
+      double avg = averageMarkBySV(list, m);
+      if (avg >= 3.5) {
+        cout << "Hoc bong: 500000" << endl;
+      } else if (avg >= 3) {
+        cout << "Hoc bong: 200000" << endl;
+      } else {
+        cout << "Khong du dieu kien" << endl;
+      }
+    }
+  }
+}
+
+double averageMarkBySV(vector<SinhVien> &list, long long m) {
+  double total = 0;
+  int count = 0;
+  for (int i = 0; i < list.size(); ++i) {
+    if (list[i].getMssv() == m) {
+      total += list[i].getMark();
+      count++;
+    }
+  }
+  if (count == 0)
+    return 0.0;
+  return total / count;
 }
