@@ -273,15 +273,12 @@ void SinhVien::printSV() {
 
 void addSV(vector<SinhVien> &list) {
   long long m;
-  bool trung = false;
-  while (!trung) {
-    cout << "Nhap MSSV: ";
-    cin >> m;
-    for (int i = 0; i < list.size(); ++i) {
-      if (list[i].getMssv() == m) {
-        trung = true;
-        cout << "MSSV da ton tai!\n";
-      }
+  cout << "Nhap MSSV: ";
+  cin >> m;
+  for (int i = 0; i < list.size(); ++i) {
+    if (list[i].getMssv() == m) {
+      cout << "MSSV da ton tai!\n";
+      return;
     }
   }
 
