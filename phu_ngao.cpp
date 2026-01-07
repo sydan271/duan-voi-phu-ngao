@@ -274,7 +274,7 @@ void SinhVien::printSV() {
 void addSV(vector<SinhVien> &list) {
   long long m;
   bool trung = false;
-  do {
+  while (!trung) {
     cout << "Nhap MSSV: ";
     cin >> m;
     for (int i = 0; i < list.size(); ++i) {
@@ -283,7 +283,10 @@ void addSV(vector<SinhVien> &list) {
         cout << "MSSV da ton tai!\n";
       }
     }
-  } while (trung);
+    if (!trung) {
+      break;
+    }
+  }
 
   string na;
   cout << "Nhap ten SV: ";
