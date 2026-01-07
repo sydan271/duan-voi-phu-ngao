@@ -197,7 +197,7 @@ int main() {
 
       switch (luaChon) {
       case 1: {
-        cout << "Nhap mon (Vat Ly, Giai tich, Dai so): ";
+        cout << "Nhap mon (Vat Ly, Giai Tich, Dai So): ";
         string mon;
         cin.ignore();
         getline(cin, mon);
