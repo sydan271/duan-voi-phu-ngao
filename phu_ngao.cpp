@@ -75,7 +75,7 @@ void searchByMSSV(vector<SinhVien> &);
 
 void searchByName(vector<SinhVien> &);
 
-void sortByMark(vector<SinhVien> &);
+void sortByMark(vector<SinhVien> &, string);
 
 void sortByName(vector<SinhVien> &);
 
@@ -109,7 +109,6 @@ int main() {
     svVEC.push_back(SinhVien(m, n, c, ma));
   }
   int size_ban_dau = svVEC.size();
-  
 
   //   for (int i = 0; i < svVEC.size(); ++i) {
   //     svVEC[i].printSV();
@@ -149,19 +148,19 @@ int main() {
       }
       // f << svVEC.size() << "\n";
 
-    //   for (int i = svVEC.size(); i > size_ban_dau; --i) {
-    //     f << svVEC[i].getMssv() << "\n";
-    //     f << svVEC[i].getName() << "\n";
-    //     f << svVEC[i].getCourse() << "\n";
-    //     f << svVEC[i].getMark() << "\n";
-    //   }
-      for (int i = size_ban_dau; i < svVEC.size(); ++i) {        
-          f << svVEC[i].getMssv() << "\n";
-          f << svVEC[i].getName() << "\n";
-          f << svVEC[i].getCourse() << "\n";
-          f << svVEC[i].getMark() << "\n";
-        }
-      
+      //   for (int i = svVEC.size(); i > size_ban_dau; --i) {
+      //     f << svVEC[i].getMssv() << "\n";
+      //     f << svVEC[i].getName() << "\n";
+      //     f << svVEC[i].getCourse() << "\n";
+      //     f << svVEC[i].getMark() << "\n";
+      //   }
+      for (int i = size_ban_dau; i < svVEC.size(); ++i) {
+        f << svVEC[i].getMssv() << "\n";
+        f << svVEC[i].getName() << "\n";
+        f << svVEC[i].getCourse() << "\n";
+        f << svVEC[i].getMark() << "\n";
+      }
+
       size_ban_dau = svVEC.size();
       f.close();
       cout << "Da luu vao file\n";
@@ -197,9 +196,14 @@ int main() {
       cin >> luaChon;
 
       switch (luaChon) {
-      case 1:
-        sortByMark(svVEC);
+      case 1: {
+        cout << "Nhap mon (Vat Ly, Giai tich, Dai so): ";
+        string mon;
+        cin.ignore();
+        getline(cin, mon);
+        sortByMark(svVEC, mon);
         break;
+      }
 
       case 2:
         sortByName(svVEC);
@@ -261,15 +265,11 @@ void SinhVien::setMark(double ma) { mark = ma; }
 double SinhVien::getMark() { return mark; }
 
 void SinhVien::printSV() {
-  cout << left << setw(30) << mssv
-       << left << setw(30) << name
-       << setw(30) << course
-       << setw(30) << fixed << setprecision(2) << mark << endl;
+  cout << left << setw(30) << mssv << left << setw(30) << name << setw(30)
+       << course << setw(30) << fixed << setprecision(2) << mark << endl;
   // cout << mssv << "\t" << name << "\t" << course << "\t" << fixed
   //      << setprecision(2) << mark << endl;
 }
-
-
 
 void addSV(vector<SinhVien> &list) {
   long long m;
@@ -337,17 +337,14 @@ void searchByName(vector<SinhVien> &list) {
   }
 }
 
-
-
-
-void sortByMark(vector<SinhVien> &list) {
+void sortByMark(vector<SinhVien> &list, string mon) {
   // luu y day la sort tang dan
   SinhVien temp;
 
   // bubble sort
   for (int i = 0; i < list.size(); ++i) {
     for (int j = i + 1; j < list.size(); ++j) {
-      if (list[i].getMark() > list[j].getMark()) {
+      if (list[i].getMark() > list[j].getMark() && list[i].getCourse() == mon) {
         temp = list[i];
         list[i] = list[j];
         list[j] = temp;
