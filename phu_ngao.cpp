@@ -85,6 +85,8 @@ double averageMarkBySV(vector<SinhVien> &, long long);
 
 void xetHocBong(vector<SinhVien> &, long long);
 
+void averageMarkByCourse(vector<SinhVien> &, string);
+
 int main() {
   // open file by using inFile
   ifstream inFile;
@@ -222,6 +224,7 @@ int main() {
     case 6:
       cout << "1. Thong ke chung" << endl;
       cout << "2. Tinh diem trung binh cua mot sinh vien" << endl;
+      cout << "3. Thong ke theo tung mon" << endl;
       int subCh;
       cout << "Lua chon: ";
       cin >> subCh;
@@ -234,6 +237,12 @@ int main() {
         double trungBinh = averageMarkBySV(svVEC, maso);
         cout << "Diem trung binh cua sinh vien " << maso << " la: " << fixed
              << setprecision(2) << trungBinh << endl;
+      } else if (subCh == 3) {
+        cout << "Nhap mon (Vat Ly, Giai Tich, Dai So): ";
+        string subj;
+        cin.ignore();
+        getline(cin, subj);
+        averageMarkByCourse(svVEC, subj);
       }
       break;
     case 7: {
@@ -435,9 +444,9 @@ void averageMark(vector<SinhVien> &list) {
 void xetHocBong(vector<SinhVien> &list, long long m) {
   double avg = averageMarkBySV(list, m);
   if (avg >= 3.5) {
-    cout << "Hoc bong: 500000" << endl;
+    cout << "Hoc bong: 500000 VND" << endl;
   } else if (avg >= 3) {
-    cout << "Hoc bong: 200000" << endl;
+    cout << "Hoc bong: 200000 VND" << endl;
   } else {
     cout << "Khong du dieu kien" << endl;
   }
@@ -455,4 +464,28 @@ double averageMarkBySV(vector<SinhVien> &list, long long m) {
   if (count == 0)
     return 0.0;
   return total / count;
+}
+
+void averageMarkByCourse(vector<SinhVien> &list, string s) {
+  double total = 0;
+  int count = 0;
+  double AvgMark;
+  for (int i = 0; i < list.size(); ++i) {
+    if (list[i].getCourse() == s) {
+      total += list[i].getMark();
+      count++;
+    }
+  }
+  if (count == 0)
+    AvgMark = 0.0;
+  else
+    AvgMark = total / count;
+
+  cout << "Diem trung binh: " << AvgMark << endl;
+
+  sortByMark(list, s);
+  cout << "Diem cao nhat cua mon " << s << " la: " << list.back().getMark()
+       << endl;
+  cout << "Diem thap nhat cua mon " << s << " la: " << list.front().getMark()
+       << endl;
 }
