@@ -527,6 +527,7 @@ void removeSV(vector<SinhVien> &list, long long ms) {
     if (list[i].getMssv() == ms) {
       list.erase(list.begin() + i);
       deleted = true;
+      --i;
     }
   }
 

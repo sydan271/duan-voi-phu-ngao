@@ -1,8 +1,42 @@
 202512345
-Nguyen Van A
-Ly
-3.5
+Nguyen Van A 
+Vat Ly
+3.0
 202512346
-Nguyen Thi B
+Nguyen Thi B 
+Giai Tich
+3.5
+202512347
+Hoang Minh C 
+Vat Ly
+2.8
+2025123458
+Dang Thi D
+Vat Ly
+3
+2025123459
+Tran Van D
 Giai Tich
 3
+
+2025123467
+Le Thi E
+Dai So
+2.5
+
+2025123468
+Le Van E
+Giai Tich
+3.2
+2025123489
+Nguyen Minh F
+Dai So
+3.5
+202512345
+Nguyen Van A
+Giai Tich 
+3
+202512345
+Nguyen Van A
+Dai So
+3.6
