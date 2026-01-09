@@ -360,9 +360,19 @@ void addSV(vector<SinhVien> &list) {
   cin.ignore();
   getline(cin, na);
 
+  bool daTonTai = false;
   string c;
-  cout << "Nhap mon: ";
-  getline(cin, c);
+  while (!daTonTai) {
+    cout << "Nhap mon: ";
+    getline(cin, c);
+    for (int i = 0; i < list.size(); ++i) {
+      if (list[i].getCourse() == c && list[i].getMssv() == m) {
+        daTonTai = false;
+        cout << "Sinh vien da dang ky mon nay!\n";
+      }
+    }
+    daTonTai = true;
+  }
 
   double ma;
   cout << "Nhap diem: ";
