@@ -87,6 +87,8 @@ void xetHocBong(vector<SinhVien> &, long long);
 
 void averageMarkByCourse(vector<SinhVien> &, string);
 
+void removeSV(vector<SinhVien> &, long long);
+
 int main() {
   // open file by using inFile
   ifstream inFile;
@@ -132,6 +134,7 @@ int main() {
     cout << "5. Sap xep ho so\n";
     cout << "6. Diem trung binh mon\n";
     cout << "7. Xet dieu kien hoc bong\n";
+    cout << "8. Xoa SV\n";
     cout << "99. Thoat\n";
     cout << "Lua chon chuc nang: ";
 
@@ -247,11 +250,33 @@ int main() {
         averageMarkByCourse(svVEC, subj);
       }
       break;
+
     case 7: {
       cout << "Nhap MSSV: ";
       long long maso;
       cin >> maso;
       xetHocBong(svVEC, maso);
+      break;
+    }
+
+    case 8: {
+      cout << "Nhap MSSV: ";
+      long long maso;
+      cin >> maso;
+      cout << "Ban co chac chan muon xoa sinh vien co MSSV " << maso
+           << " khong? (y/n)";
+      char conf;
+      cin >> conf;
+      switch (conf) {
+      case 'y':
+        removeSV(svVEC, maso);
+        break;
+      case 'n':
+        break;
+      default:
+        cout << "Vui long nhap y/n";
+        break;
+      }
       break;
     }
 
@@ -494,4 +519,20 @@ void averageMarkByCourse(vector<SinhVien> &list, string s) {
        << endl;
   cout << "Diem thap nhat cua mon " << s << " la: " << list.front().getMark()
        << endl;
+}
+
+void removeSV(vector<SinhVien> &list, long long ms) {
+  bool deleted = false;
+  for (int i = 0; i < list.size(); ++i) {
+    if (list[i].getMssv() == ms) {
+      list.erase(list.begin() + i);
+      deleted = true;
+    }
+  }
+
+  if (!deleted) {
+    cout << "Unavailable" << endl;
+  } else {
+    cout << "Da xoa sinh vien co MSSV: " << ms << endl;
+  }
 }
