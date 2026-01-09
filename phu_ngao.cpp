@@ -137,6 +137,8 @@ int main() {
 
     cin >> choice;
 
+    cout << "\n";
+
     switch (choice) {
     case 1:
       addSV(svVEC);
@@ -265,6 +267,7 @@ int main() {
   return 0;
 }
 
+// initialization
 SinhVien::SinhVien() {
   mssv = 0;
   name = "";
@@ -279,6 +282,7 @@ SinhVien::SinhVien(long long m, string n, string c, double ma) {
   mark = ma;
 }
 
+// access functions
 void SinhVien::setMssv(long long m) { mssv = m; }
 
 long long SinhVien::getMssv() { return mssv; }
@@ -343,15 +347,16 @@ void searchByMSSV(vector<SinhVien> &list) {
   cout << "Nhap MSSV: ";
   long long m;
   cin >> m;
-  bool found = true;
+  bool notfound = true;
 
   for (int i = 0; i < list.size(); ++i) {
     if (list[i].getMssv() == m) {
       list[i].printSV();
+      notfound = false;
     }
   }
 
-  if (!found) {
+  if (notfound) {
     cout << "Unavailable" << endl;
   }
 }
@@ -361,15 +366,16 @@ void searchByName(vector<SinhVien> &list) {
   string n;
   cin >> n;
 
-  bool found = true;
+  bool notfound = true;
 
   for (int i = 0; i < list.size(); ++i) {
     if (list[i].getName() == n) {
       list[i].printSV();
+      notfound = false;
     }
   }
 
-  if (!found) {
+  if (notfound) {
     cout << "Unavailable" << endl;
   }
 }
