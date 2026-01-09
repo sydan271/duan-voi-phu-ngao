@@ -77,7 +77,7 @@ void searchByName(vector<SinhVien> &);
 
 void sortByMark(vector<SinhVien> &, string);
 
-void sortByName(vector<SinhVien> &);
+void sortByMSSV(vector<SinhVien> &, string);
 
 void averageMark(vector<SinhVien> &);
 
@@ -208,33 +208,38 @@ int main() {
       }
       break;
 
-    case 5:
+    case 5: {
       cout << "1. Sap xep theo diem" << endl;
-      cout << "2. Sap xep theo ten" << endl;
+      cout << "2. Sap xep theo mssv" << endl;
       int luaChon;
       cin >> luaChon;
 
       switch (luaChon) {
-      case 1: {
-        cout << "Nhap mon (Vat Ly, Giai Tich, Dai So): ";
-        string mon;
-        cin.ignore();
-        getline(cin, mon);
-        sortByMark(svVEC, mon);
-        cout << "\n";
-        break;
-      }
+        case 1: {
+          cout << "Nhap mon (Vat Ly, Giai Tich, Dai So): ";
+          string mon;
+          cin.ignore();
+          getline(cin, mon);
+          sortByMark(svVEC, mon);
+          cout << "\n";
+          break;
+        }
 
-      case 2:
-        sortByName(svVEC);
-        cout << "\n";
-        break;
+        case 2: {
+          cout << "Nhap mon (Vat Ly, Giai Tich, Dai So): ";
+          string sbj;
+          cin.ignore();
+          getline(cin, sbj);
+          sortByMSSV(svVEC, sbj);
+          break;
+        }
 
-      default:
-        cout << "Vui long nhap lua chon valid" << endl;
-        break;
+        default:
+          cout << "Vui long nhap lua chon valid" << endl;
+          break;
       }
       break;
+    }
 
     case 6:
       cout << "1. Thong ke chung" << endl;
@@ -451,18 +456,23 @@ void sortByMark(vector<SinhVien> &list, string mon) {
   }
 }
 
-void sortByName(vector<SinhVien> &list) {
+void sortByMSSV(vector<SinhVien> &list, string mon) {
   SinhVien temp;
   for (int i = 0; i < list.size(); ++i) {
     for (int j = i + 1; j < list.size(); ++j) {
-      if (list[i].getName() > list[j].getName()) {
+      if (list[i].getMssv() > list[j].getMssv()) {
         temp = list[i];
         list[i] = list[j];
         list[j] = temp;
       }
     }
   }
-  displaySV(list);
+  
+  for (int i = 0; i < list.size(); ++i) {
+    if (list[i].getCourse() == mon){
+      list[i].printSV();
+    }
+  }
 }
 
 void averageMark(vector<SinhVien> &list) {
