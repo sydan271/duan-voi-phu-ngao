@@ -127,6 +127,9 @@ int main() {
   int choice;
 
   while (!done) {
+    cout << "\n";
+    cout << "Quan ly sinh vien\n";
+    cout << "----------------\n";
     cout << "1. Them SV\n";
     cout << "2. Hien thi danh sach SV\n";
     cout << "3. Luu file\n";
@@ -139,16 +142,18 @@ int main() {
     cout << "Lua chon chuc nang: ";
 
     cin >> choice;
-
+    cout << "----------------\n";
     cout << "\n";
 
     switch (choice) {
     case 1:
       addSV(svVEC);
+      cout << "\n";
       break;
 
     case 2:
       displaySV(svVEC);
+      cout << "\n";
       break;
 
     case 3: {
@@ -175,6 +180,7 @@ int main() {
       size_ban_dau = svVEC.size();
       f.close();
       cout << "Da luu vao file\n";
+      cout << "\n";
       break;
     }
 
@@ -188,10 +194,12 @@ int main() {
       switch (timKiem) {
       case 1:
         searchByMSSV(svVEC);
+        cout << "\n";
         break;
 
       case 2:
         searchByName(svVEC);
+        cout << "\n";
         break;
 
       default:
@@ -213,11 +221,13 @@ int main() {
         cin.ignore();
         getline(cin, mon);
         sortByMark(svVEC, mon);
+        cout << "\n";
         break;
       }
 
       case 2:
         sortByName(svVEC);
+        cout << "\n";
         break;
 
       default:
@@ -235,6 +245,7 @@ int main() {
       cin >> subCh;
       if (subCh == 1) {
         averageMark(svVEC);
+        cout << "\n";
       } else if (subCh == 2) {
         cout << "Nhap MSSV: ";
         long long maso;
@@ -242,6 +253,7 @@ int main() {
         double trungBinh = averageMarkBySV(svVEC, maso);
         cout << "Diem trung binh cua sinh vien " << maso << " la: " << fixed
              << setprecision(2) << trungBinh << endl;
+        cout << "\n";
       } else if (subCh == 3) {
         cout << "Nhap mon (Vat Ly, Giai Tich, Dai So): ";
         string subj;
@@ -277,6 +289,7 @@ int main() {
         cout << "Vui long nhap y/n";
         break;
       }
+      cout << "\n";
       break;
     }
 
