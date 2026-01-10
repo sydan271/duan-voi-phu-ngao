@@ -398,8 +398,10 @@ void displaySV(vector<SinhVien> &list) {
 
 void searchByMSSV(vector<SinhVien> &list) {
   cout << "Nhap MSSV: ";
-  long long m;
-  cin >> m;
+  string n;
+  cin.ignore();
+  getline(cin, n);
+
   bool notfound = true;
 
   for (int i = 0; i < list.size(); ++i) {
